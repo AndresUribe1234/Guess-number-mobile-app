@@ -1,7 +1,8 @@
-import { View, StyleSheet, TextInput, Alert } from "react-native";
+import { View, StyleSheet, TextInput, Alert, Text } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import { useState } from "react";
 import Colors from "../constants/color";
+import Title from "../components/Title";
 
 const StartGameScreen = (props) => {
   const [inputValue, setInputValue] = useState("");
@@ -33,21 +34,25 @@ const StartGameScreen = (props) => {
   };
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        maxLength={2}
-        keyboardType="number-pad"
-        selectionColor={Colors.primaryBtnColor}
-        onChangeText={inputEnteredHandler}
-        value={inputValue}
-      ></TextInput>
-      <View style={styles.btnContainer}>
-        <View style={styles.btnSize}>
-          <PrimaryButton onPress={addHandler}>Add</PrimaryButton>
-        </View>
-        <View style={styles.btnSize}>
-          <PrimaryButton onPress={resetHandler}>Reset</PrimaryButton>
+    <View style={styles.screen}>
+      <Title>Guess My Number</Title>
+      <View style={styles.container}>
+        <Text style={styles.labelText}>Enter A Number</Text>
+        <TextInput
+          style={styles.input}
+          maxLength={2}
+          keyboardType="number-pad"
+          selectionColor={Colors.primaryBtnColor}
+          onChangeText={inputEnteredHandler}
+          value={inputValue}
+        ></TextInput>
+        <View style={styles.btnContainer}>
+          <View style={styles.btnSize}>
+            <PrimaryButton onPress={addHandler}>Add</PrimaryButton>
+          </View>
+          <View style={styles.btnSize}>
+            <PrimaryButton onPress={resetHandler}>Reset</PrimaryButton>
+          </View>
         </View>
       </View>
     </View>
@@ -57,8 +62,15 @@ const StartGameScreen = (props) => {
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    padding: 24,
+    alignItems: "center",
+    marginTop: 50,
+    gap: 20,
+  },
   container: {
-    // flex: 1,
+    gap: 20,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
@@ -70,7 +82,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 6,
     shadowOpacity: 0.25,
-    marginTop: 100,
+
     marginHorizontal: 24,
     padding: 16,
   },
@@ -82,10 +94,12 @@ const styles = StyleSheet.create({
     borderColor: Colors.primaryBorderColor,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    marginBottom: 12,
-    width: "30%",
+    width: 80,
     textAlign: "center",
     fontSize: 20,
   },
   btnSize: { flex: 1 },
+  labelText: {
+    fontWeight: "bold",
+  },
 });
